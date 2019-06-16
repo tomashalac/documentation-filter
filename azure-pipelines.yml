@@ -1,0 +1,24 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+
+- task: VSBuild@1
+  displayName: 'Build solution **/*.sln'
+  inputs:
+    solution: '**/*.sln'
+    vsVersion: "16.0"
+    msbuildArchitecture: x64
+
+- task: VSTest@2
+  displayName: 'VsTest - testAssemblies'
