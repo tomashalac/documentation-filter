@@ -14,10 +14,10 @@ steps:
   displayName: 'NuGet restore'
 
 - task: VSBuild@1
-  displayName: 'Build solution $(System.DefaultWorkingDirectory)/documentation-filter/documentation-filter/documentation-filter.sln'
+  displayName: 'Build solution **/*.sln'
   inputs:
-    solution: '$(System.DefaultWorkingDirectory)/documentation-filter/documentation-filter/documentation-filter.sln'
-    vsVersion: 16.0
+    solution: '**/*.sln'
+    vsVersion: "16.0"
     msbuildArchitecture: x64
 
 - task: VSTest@2
