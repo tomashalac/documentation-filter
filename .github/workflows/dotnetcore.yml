@@ -17,7 +17,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
-    - name: Build with dotnet
+    - name: Build with dotnet on Linux
       run: dotnet build $GITHUB_WORKSPACE/**/*.sln --configuration Release
-    - name: Test with dotnet
+      if: (matrix.os != 'windows-latest')
+    - name: Build with dotnet on Windows
+      run: dotnet build $GITHUB_WORKSPACE\**\*.sln --configuration Release
+      if: (matrix.os == 'windows-latest')
+    - name: Test with dotnet on Linux
       run: dotnet test $GITHUB_WORKSPACE/**/*.sln
+      if: (matrix.os != 'windows-latest')
+    - name: Test with dotnet on Windows
+      run: dotnet test $GITHUB_WORKSPACE\**\*.sln
+      if: (matrix.os == 'windows-latest')
