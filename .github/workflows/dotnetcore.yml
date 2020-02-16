@@ -24,6 +24,9 @@ jobs:
     # Config Windows
     - name: Config for Windows
       run: |
+        dir /S /b "%GITHUB_WORKSPACE%\*.sln" > result.txt
+        set /p SOLUTION_FILE=<result.txt
+        echo "TEST"
         echo "%GITHUB_WORKSPACE%\*.sln"
         dir /S /b "%GITHUB_WORKSPACE%\*.sln
         HELP FOR
