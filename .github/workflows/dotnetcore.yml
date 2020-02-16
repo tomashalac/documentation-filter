@@ -26,18 +26,7 @@ jobs:
       run: |
         dir /S /b "%GITHUB_WORKSPACE%\*.sln" > result.txt
         set /p SOLUTION_FILE=<result.txt
-        echo "TEST"
-        echo "%GITHUB_WORKSPACE%\*.sln"
-        dir /S /b "%GITHUB_WORKSPACE%\*.sln
-        HELP FOR
-        echo "FIN DE HELP ======"
-        FOR /F %i IN ('dir')DO @echo %i
-        echo ""FOR /F %i IN (`set`)DO @echo %i""
-        FOR /F %i IN ("dir")DO @echo %i
-        FOR /F %testOtraVar IN (""dir"")DO echo %testOtraVar
-        FOR /F %i IN ('dir /S /b "%GITHUB_WORKSPACE%\*.sln"')DO echo %i
-        FOR /F %i IN ('dir /S /b "%GITHUB_WORKSPACE%\*.sln"')DO set SOLUTION_FILE=%i
-        echo "fin"
+        echo %SOLUTION_FILE%
       if: (matrix.os == 'windows-latest')
       shell: cmd
     # Windows
