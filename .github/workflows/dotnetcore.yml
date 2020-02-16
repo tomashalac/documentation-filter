@@ -26,8 +26,9 @@ jobs:
       run: |
         echo "%GITHUB_WORKSPACE%\*.sln"
         dir /S /b "%GITHUB_WORKSPACE%\*.sln
-        FOR /F %i IN ('dir /S /b "%GITHUB_WORKSPACE%\*.sln"') DO set SOLUTION_FILE=%i
+        FOR /F %i IN ('dir') DO echo %i
         FOR /F %i IN ('dir /S /b "%GITHUB_WORKSPACE%\*.sln"') DO echo %i
+        FOR /F %i IN ('dir /S /b "%GITHUB_WORKSPACE%\*.sln"') DO set SOLUTION_FILE=%i
         echo "fin"
       if: (matrix.os == 'windows-latest')
       shell: cmd
