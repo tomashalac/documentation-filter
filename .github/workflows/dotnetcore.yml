@@ -24,8 +24,8 @@ jobs:
     # Config Windows
     - name: Config for Windows
       run: |
-        echo %GITHUB_WORKSPACE%
-        FOR /F %i IN ('dir /S /b %GITHUB_WORKSPACE%\*.sln') DO set SOLUTION_FILE=%i
+        echo "%GITHUB_WORKSPACE%\*.sln";
+        FOR /F %i IN ('dir /S /b "%GITHUB_WORKSPACE%\*.sln"') DO set SOLUTION_FILE=%i
       if: (matrix.os == 'windows-latest')
       shell: cmd
     # Windows
