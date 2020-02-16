@@ -23,7 +23,9 @@ jobs:
       if: (matrix.os != 'windows-latest')
     # Config Windows
     - name: Config for Windows
-      run: FOR /F %i IN ('dir /S /b .\*.sln') DO set SOLUTION_FILE=%i
+      run: |
+        echo %PATH%
+        FOR /F %i IN ('dir /S /b %PATH%\*.sln') DO set SOLUTION_FILE=%i
       if: (matrix.os == 'windows-latest')
       shell: cmd
     # Windows
