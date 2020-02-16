@@ -26,6 +26,7 @@ jobs:
       run: |
         echo "%GITHUB_WORKSPACE%\*.sln"
         dir /S /b "%GITHUB_WORKSPACE%\*.sln
+        HELP FOR
         FOR /F "usebackq delims==" %i IN (`set`) DO @echo %i
         FOR /F %testOtraVar IN (""dir"") DO echo %testOtraVar
         FOR /F %i IN ('dir /S /b "%GITHUB_WORKSPACE%\*.sln"') DO echo %i
