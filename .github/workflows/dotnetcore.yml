@@ -17,15 +17,21 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
+    # Linux
     - name: Build with dotnet on Linux
-      run: dotnet build $GITHUB_WORKSPACE/**/*.sln --configuration Release
+      run: dotnet build ./**/*.sln --configuration Release
       if: (matrix.os != 'windows-latest')
+    # Windows
     - name: Build with dotnet on Windows
-      run: dotnet build .\**\*.sln --configuration Release
+      run: |
+        FOR /F %i IN ('dir /S /b *.sln') DO set SOLUTION_FILE=%i
+        dotnet build %SOLUTION_FILE% --configuration Release
       if: (matrix.os == 'windows-latest')
+    # Linux
     - name: Test with dotnet on Linux
-      run: dotnet test $GITHUB_WORKSPACE/**/*.sln
+      run: dotnet test ./**/*.sln
       if: (matrix.os != 'windows-latest')
+    # Windows
     - name: Test with dotnet on Windows
-      run: dotnet test .\**\*.sln
+      run: dotnet test %SOLUTION_FILE%
       if: (matrix.os == 'windows-latest')
