@@ -1,4 +1,4 @@
-name: .NET Core
+name: Build And Test .NET Core Proyects
 
 on: [push]
 
@@ -21,11 +21,14 @@ jobs:
     - name: Build with dotnet on Linux
       run: dotnet build ./**/*.sln --configuration Release
       if: (matrix.os != 'windows-latest')
+    # Config Windows
+    - name: Build with dotnet on Windows
+      run: FOR /F %i IN ('dir /S /b *.sln') DO set SOLUTION_FILE=%i
+      if: (matrix.os == 'windows-latest')
+      shell: cmd
     # Windows
     - name: Build with dotnet on Windows
-      run: |
-        FOR /F %i IN ('dir /S /b *.sln') DO set SOLUTION_FILE=%i
-        dotnet build %SOLUTION_FILE% --configuration Release
+      run: dotnet build %SOLUTION_FILE% --configuration Release
       if: (matrix.os == 'windows-latest')
     # Linux
     - name: Test with dotnet on Linux
