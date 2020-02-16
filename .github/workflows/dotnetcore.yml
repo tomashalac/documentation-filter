@@ -1,6 +1,6 @@
-name: Build And Test .NET Core Proyects
+name: Build And Test .NET Core Projects
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
