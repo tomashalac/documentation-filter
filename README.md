@@ -12,10 +12,14 @@ doc.MoveOnlyPublics();
 
 ## Documentation
 
-### new DocumentationFilter(String fullFileName, String dllToLoad)
+```c#
+new DocumentationFilter(String fullFileName, String dllToLoad)
+```
 This object allows you to manipulate the specified documentation.
 * **fullFileName** The relative path to the file, example "docs.xml"
 * **dllToLoad** The absolute path to the DLL, example "C:\test\MyCode.dll"
 
-### DocumentationFilter.MoveOnlyPublics
+```c#
+DocumentationFilter.MoveOnlyPublics()
+```
 Move all summaries that are public to the other file "new_{fullFileName}.xml"
